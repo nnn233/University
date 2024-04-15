@@ -1,0 +1,31 @@
+CREATE TABLE IF NOT EXISTS enrollee(
+id int primary key not null references public.user(id),
+fio varchar(150) not null,
+passport_data char(10)not null,
+snils char(12) not null,
+email varchar(100) not null,
+phone char(11) not null,
+fio_parent varchar(150) not null,
+points double precision not null,
+document varchar(200) not null
+);
+
+CREATE TABLE IF NOT EXISTS education_level(
+id int primary key not null,
+title varchar(100) not null);
+
+CREATE TABLE IF NOT EXISTS specialty(
+id int primary key not null,
+title varchar(100) not null,
+id_education_level int not null references education_level(id));
+
+CREATE TABLE IF NOT EXISTS application(
+id int primary key not null,
+status varchar(20) not null,
+date date not null,
+specialty_1 int not null references specialty(id),
+specialty_2 int not null references specialty(id),
+specialty_3 int not null references specialty(id),
+specialty_4 int not null references specialty(id),
+specialty_5 int not null references specialty(id),
+commentary varchar(100));
